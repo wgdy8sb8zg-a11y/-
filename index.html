@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>作者自云 · 《红楼梦》开卷 ｜ 中英双语对照</title>
+<style>
+  :root{
+    --paper:#faf7f2;
+    --paper-2:#f3eee5;
+    --card:#fffdfa;
+    --ink:#26221f;
+    --ink-2:#5b544d;
+    --ink-3:#8d857c;
+    --accent:#9c2b2b;
+    --accent-soft:#c47878;
+    --rule:#e5ddd2;
+    --zh:"Songti SC","STSong","Source Han Serif SC","Noto Serif CJK SC",serif;
+    --en:Georgia,"Iowan Old Style","Times New Roman",serif;
+    --de:"Iowan Old Style",Georgia,"Times New Roman",serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--zh);
+    line-height:1.95;
+    background-image:
+      radial-gradient(circle at 12% 8%, rgba(156,43,43,.035), transparent 45%),
+      radial-gradient(circle at 88% 92%, rgba(156,43,43,.03), transparent 42%);
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 28px 96px;}
+
+  /* ---------- Hero ---------- */
+  header.hero{
+    text-align:center;
+    padding:76px 0 34px;
+    border-bottom:1px solid var(--rule);
+  }
+  .seal{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:58px;height:58px;
+    border:2px solid var(--accent);
+    border-radius:5px;
+    color:var(--accent);
+    font-size:19px;
+    letter-spacing:2px;
+    line-height:1.15;
+    padding-left:2px;
+    margin-bottom:26px;
+    font-weight:600;
+  }
+  h1{
+    font-size:42px;
+    font-weight:500;
+    letter-spacing:.14em;
+    margin:0 0 14px;
+    text-indent:.14em;
+    color:var(--ink);
+  }
+  .sub-de{
+    font-family:var(--de);
+    font-style:italic;
+    font-size:17px;
+    color:var(--ink-2);
+    margin:0 0 6px;
+  }
+  .sub-en{
+    font-family:var(--en);
+    font-size:15px;
+    letter-spacing:.06em;
+    color:var(--ink-3);
+    margin:0;
+    text-transform:uppercase;
+  }
+  .meta{
+    margin-top:22px;
+    font-size:12.5px;
+    letter-spacing:.06em;
+    color:var(--ink-3);
+  }
+  .meta span{white-space:nowrap;}
+  .meta .dot{margin:0 9px;color:var(--rule);}
+
+  /* ---------- Language switch ---------- */
+  .langbar{
+    display:flex;justify-content:center;gap:8px;
+    margin:26px 0 0;flex-wrap:wrap;
+  }
+  .langbar button{
+    font-family:var(--zh);font-size:13px;letter-spacing:.05em;
+    padding:6px 16px;border-radius:999px;
+    border:1px solid var(--rule);background:transparent;
+    color:var(--ink-2);cursor:pointer;
+    transition:all .18s ease;
+  }
+  .langbar button:hover{border-color:var(--accent-soft);color:var(--accent);}
+  .langbar button.active{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+  }
+  body.only-zh .en{display:none !important;}
+  body.only-en .zh{display:none !important;}
+
+  /* ---------- Sections ---------- */
+  section{padding:52px 0;border-bottom:1px solid var(--rule);}
+  section:last-of-type{border-bottom:none;}
+  .sec-head{margin-bottom:26px;}
+  .sec-num{
+    font-family:var(--en);
+    font-size:12px;letter-spacing:.18em;
+    color:var(--accent-soft);
+    display:block;margin-bottom:8px;
+  }
+  h2{
+    font-size:22px;font-weight:500;letter-spacing:.1em;
+    margin:0 0 4px;color:var(--ink);
+  }
+  h2 .h2-en{
+    display:block;
+    font-family:var(--en);font-size:13px;font-weight:400;
+    letter-spacing:.05em;color:var(--ink-3);
+    margin-top:6px;text-transform:none;
+  }
+
+  p{margin:0 0 16px;}
+  .prose-zh{font-size:16.5px;color:var(--ink);}
+  .prose-en{font-family:var(--en);font-size:15.5px;line-height:1.78;color:var(--ink-2);}
+  .lead{font-size:15px;color:var(--ink-2);}
+
+  /* ---------- German source block ---------- */
+  .de-block{
+    background:var(--paper-2);
+    border-left:3px solid var(--accent-soft);
+    border-radius:0 7px 7px 0;
+    padding:20px 24px;
+    font-family:var(--de);
+    font-style:italic;
+    font-size:15.5px;
+    line-height:1.85;
+    color:var(--ink-2);
+  }
+  .de-block .label{
+    display:block;
+    font-family:var(--en);font-style:normal;
+    font-size:11px;letter-spacing:.16em;
+    color:var(--ink-3);
+    margin-bottom:10px;text-transform:uppercase;
+  }
+
+  /* ---------- Close reading units ---------- */
+  .unit{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:9px;
+    padding:22px 24px 20px;
+    margin-bottom:16px;
+  }
+  .unit .idx{
+    font-family:var(--en);font-size:11px;letter-spacing:.16em;
+    color:var(--accent-soft);display:block;margin-bottom:10px;
+  }
+  .unit .de-line{
+    font-family:var(--de);font-style:italic;
+    font-size:14.5px;line-height:1.7;
+    color:var(--ink-3);
+    padding-bottom:12px;margin-bottom:14px;
+    border-bottom:1px dashed var(--rule);
+  }
+  .line{display:flex;gap:11px;align-items:baseline;margin-bottom:9px;}
+  .tag{
+    flex:0 0 auto;
+    font-size:11px;letter-spacing:.04em;
+    padding:2px 8px;border-radius:4px;
+    line-height:1.6;
+    transform:translateY(-1px);
+  }
+  .tag.bing{background:#f2e6e6;color:var(--accent);}
+  .tag.lit{background:var(--paper-2);color:var(--ink-3);}
+  .line .txt{font-size:16.5px;color:var(--ink);}
+  .unit .en-line{
+    font-family:var(--en);font-size:15.5px;line-height:1.72;
+    color:var(--ink-2);margin-top:10px;
+  }
+  .unit .en-line .lead-in{
+    font-variant:small-caps;letter-spacing:.05em;
+    color:var(--ink-3);margin-right:2px;
+  }
+
+  /* ---------- Side-by-side full text ---------- */
+  .cols{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;
+    border:1px solid var(--rule);border-radius:9px;overflow:hidden;
+    background:var(--card);
+  }
+  .cols > div{padding:24px 26px;}
+  .cols > div + div{border-left:1px solid var(--rule);background:var(--paper-2);}
+  .cols .colhead{
+    font-size:12px;letter-spacing:.14em;color:var(--ink-3);
+    margin-bottom:14px;display:block;
+  }
+  .cols .zh p{font-size:16.5px;line-height:2;margin:0;}
+  .cols .en p{font-family:var(--en);font-size:15.5px;line-height:1.78;color:var(--ink-2);margin:0;}
+
+  /* ---------- Table ---------- */
+  table{
+    width:100%;border-collapse:collapse;
+    font-size:15px;background:var(--card);
+    border:1px solid var(--rule);border-radius:9px;
+    overflow:hidden;
+  }
+  th,td{
+    padding:11px 14px;text-align:left;
+    border-bottom:1px solid var(--rule);
+    vertical-align:top;
+  }
+  thead th{
+    background:var(--paper-2);
+    font-size:12.5px;font-weight:500;letter-spacing:.08em;
+    color:var(--ink-2);
+  }
+  tbody tr:last-child td{border-bottom:none;}
+  td.zh-c{font-size:16px;color:var(--ink);}
+  td.py{font-family:var(--en);color:var(--accent);font-size:14px;}
+  td.de-c{font-family:var(--de);font-style:italic;color:var(--ink-2);font-size:14.5px;}
+  td.en-c{font-family:var(--en);color:var(--ink-2);font-size:14.5px;}
+  .tbl-scroll{overflow-x:auto;}
+
+  /* ---------- Notes ---------- */
+  ol.notes{padding-left:0;margin:0;list-style:none;counter-reset:n;}
+  ol.notes li{
+    counter-increment:n;
+    position:relative;
+    padding:0 0 22px 42px;
+    margin-bottom:22px;
+    border-bottom:1px solid var(--rule);
+  }
+  ol.notes li:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0;}
+  ol.notes li::before{
+    content:counter(n);
+    position:absolute;left:0;top:1px;
+    width:26px;height:26px;line-height:24px;
+    text-align:center;border-radius:50%;
+    border:1px solid var(--accent-soft);color:var(--accent);
+    font-family:var(--en);font-size:12.5px;
+  }
+  .note-zh{font-size:16px;margin-bottom:9px;color:var(--ink);}
+  .note-en{font-family:var(--en);font-size:14.5px;line-height:1.72;color:var(--ink-2);}
+  .note-zh strong{font-weight:600;color:var(--accent);}
+
+  /* ---------- Footer ---------- */
+  footer{
+    margin-top:14px;padding-top:30px;
+    border-top:1px solid var(--rule);
+    text-align:center;
+    font-size:12.5px;color:var(--ink-3);line-height:2;
+  }
+  footer .en{font-family:var(--en);font-size:12px;}
+  code{
+    font-family:"SF Mono",Menlo,Consolas,monospace;
+    font-size:.88em;background:var(--paper-2);
+    padding:1px 5px;border-radius:3px;color:var(--ink-2);
+  }
+
+  @media (max-width:720px){
+    .wrap{padding:0 18px 64px;}
+    h1{font-size:32px;}
+    .cols{grid-template-columns:1fr;}
+    .cols > div + div{border-left:none;border-top:1px solid var(--rule);}
+    section{padding:40px 0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="seal">紅樓夢</div>
+    <h1>作者自云</h1>
+    <p class="sub-de">Der Verfasser sagt von sich selbst</p>
+    <p class="sub-en">The Author&rsquo;s Own Words &middot; A Bilingual Reading</p>
+    <p class="meta">
+      <span>源语言：德语</span><span class="dot">·</span>
+      <span>对照：中文 / English</span><span class="dot">·</span>
+      <span>2026-10-10</span>
+    </p>
+    <nav class="langbar" aria-label="语言显示">
+      <button id="btn-both" class="active" type="button">中英对照</button>
+      <button id="btn-zh" type="button">仅中文</button>
+      <button id="btn-en" type="button">English only</button>
+    </nav>
+  </header>
+
+  <!-- 00 ABOUT -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">00 / 导言</span>
+      <h2>这段文字是什么<span class="h2-en">What This Passage Is</span></h2>
+    </div>
+
+    <div class="zh">
+      <p class="prose-zh">这段德文是《红楼梦》卷首的转述，即通常所称的「作者自云」。曹雪芹在全书入口处借「作者」之口交代创作缘起 —— 历过一番梦幻，于是把真事隐去，借「通灵」之说写成《石头记》。在甲戌本等早期抄本中，这段文字位于卷首；学界一般认为它有「楔子」的性质，甚至可能出自脂砚斋批语所引述的作者自述。</p>
+      <p class="prose-zh">需要留意的是，<strong>这段德文并非逐字翻译</strong>：它的末句 »Zhen Shiyin erkennt im Traum das beseelte Juwel«（甄士隐梦中识得通灵宝玉）对应的是第一回的回目「甄士隐梦幻识通灵，贾雨村风尘怀闺秀」，而原著正文只作「故曰『甄士隐』云云」。本页因此同时给出<strong>「原著回填」</strong>与<strong>「依德文直译」</strong>两个中文版本，供比对之用。</p>
+    </div>
+
+    <div class="en">
+      <p class="prose-en">This German passage is a rendering of the opening of <em>Honglou Meng</em> — the lines conventionally known as &ldquo;the author&rsquo;s own words.&rdquo; At the threshold of the novel, Cao Xueqin has the &ldquo;author&rdquo; account for his motive: having once passed through a dream, he conceals the true matter and, under the pretext of the tale of the spirit-endowed stone, writes the <em>Story of the Stone</em>. In early manuscripts such as the Jiaxu edition the passage stands at the head of the book; scholars generally treat it as a prologue (楔子), possibly quoting the author&rsquo;s own statement as recorded in Zhiyanzhai&rsquo;s commentary.</p>
+      <p class="prose-en">Note that <strong>the German is not a literal translation</strong>. Its final sentence — &ldquo;Zhen Shiyin in his dream beholds the spirit-endowed jade&rdquo; — corresponds to the couplet-title of Chapter&nbsp;1, whereas the body of the novel reads only &ldquo;hence the words <em>Zhen Shiyin</em>.&rdquo; This page therefore offers <strong>two Chinese versions</strong> side by side: a restoration of the perceived original, and a literal rendering of the German.</p>
+    </div>
+  </section>
+
+  <!-- 01 SOURCE -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01 / 源文</span>
+      <h2>德语原文<span class="h2-en">The German Source</span></h2>
+    </div>
+    <div class="de-block">
+      <span class="label">Quelle &middot; 347 Zeichen, ein einziger Absatz</span>
+      Der Verfasser sagt von sich selbst: Weil er einmal einen Traum durchlebt hatte, verbarg er die wahre Begebenheit und schrieb, unter dem Vorwand der Erzählung vom beseelten Stein (通靈 &middot; tōnglíng, „die Geister Verbindende&ldquo;), dieses Buch, die »Geschichte vom Stein« (石頭記 &middot; Shitouji). Daher heißt es: »Zhen Shiyin erkennt im Traum das beseelte Juwel.«
+    </div>
+  </section>
+
+  <!-- 02 CLOSE READING -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02 / 精读</span>
+      <h2>逐句对照<span class="h2-en">Sentence by Sentence</span></h2>
+      <p class="lead">每句先列德文，再列两种中文（<span class="tag bing" style="transform:none">回填</span> 取原著原文，<span class="tag lit" style="transform:none">直译</span> 依德文语序），末列英文。</p>
+    </div>
+
+    <div class="unit">
+      <span class="idx">UNIT 01</span>
+      <div class="de-line">Der Verfasser sagt von sich selbst:</div>
+      <div class="line"><span class="tag bing">回填</span><span class="txt zh">作者自云：</span></div>
+      <div class="line"><span class="tag lit">直译</span><span class="txt zh">作者自述：</span></div>
+      <div class="en-line"><span class="lead-in">EN</span>The author speaks of himself:</div>
+    </div>
+
+    <div class="unit">
+      <span class="idx">UNIT 02</span>
+      <div class="de-line">Weil er einmal einen Traum durchlebt hatte, verbarg er die wahre Begebenheit</div>
+      <div class="line"><span class="tag bing">回填</span><span class="txt zh">因曾历过一番梦幻之后，故将真事隐去</span></div>
+      <div class="line"><span class="tag lit">直译</span><span class="txt zh">因他曾身历一场梦，遂将真事隐去</span></div>
+      <div class="en-line"><span class="lead-in">EN</span>Because he had once lived through a dream, he concealed the true event</div>
+    </div>
+
+    <div class="unit">
+      <span class="idx">UNIT 03</span>
+      <div class="de-line">und schrieb, unter dem Vorwand der Erzählung vom beseelten Stein (通靈 &middot; tōnglíng, „die Geister Verbindende&ldquo;), dieses Buch, die »Geschichte vom Stein« (石頭記 &middot; Shitouji).</div>
+      <div class="line"><span class="tag bing">回填</span><span class="txt zh">而借「通灵」之说，撰此《石头记》一书也</span></div>
+      <div class="line"><span class="tag lit">直译</span><span class="txt zh">借「通灵」之说 —— 通靈，意为「沟通神灵者」—— 写成此书，即《石头记》</span></div>
+      <div class="en-line"><span class="lead-in">EN</span>and wrote — under the pretext of the tale of the stone endowed with spirit (通靈 &middot; <em>tōnglíng</em>, &ldquo;the one who binds the spirits&rdquo;) — this book, the <em>Story of the Stone</em>.</div>
+    </div>
+
+    <div class="unit">
+      <span class="idx">UNIT 04</span>
+      <div class="de-line">Daher heißt es: »Zhen Shiyin erkennt im Traum das beseelte Juwel.«</div>
+      <div class="line"><span class="tag bing">回填</span><span class="txt zh">故曰「甄士隐」云云</span></div>
+      <div class="line"><span class="tag lit">直译</span><span class="txt zh">故而说：「甄士隐于梦中识得通灵宝玉。」</span></div>
+      <div class="en-line"><span class="lead-in">EN</span>Hence the words: &ldquo;Zhen Shiyin in his dream beholds the spirit-endowed jade.&rdquo;</div>
+      <p class="lead" style="margin:12px 0 0;font-size:13.5px;color:var(--accent);">▲ 此句德文与原著正文有出入，取的是第一回回目 —— 详见译注 1。</p>
+    </div>
+  </section>
+
+  <!-- 03 FULL TEXT -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03 / 通读</span>
+      <h2>全文连读<span class="h2-en">The Passage in Full</span></h2>
+    </div>
+    <div class="cols">
+      <div class="zh">
+        <span class="colhead">中文 &middot; 原著回填</span>
+        <p>此开卷第一回也。作者自云：因曾历过一番梦幻之后，故将真事隐去，而借「通灵」之说，撰此《石头记》一书也。故曰「甄士隐」云云。</p>
+      </div>
+      <div class="en">
+        <span class="colhead">English &middot; rendered from the German</span>
+        <p>The author speaks of himself: because he had once lived through a dream, he concealed the true event and wrote — under the pretext of the tale of the stone endowed with spirit (通靈 &middot; <em>tōnglíng</em>, &ldquo;the one who binds the spirits&rdquo;) — this book, the <em>Story of the Stone</em>. Hence the words: &ldquo;Zhen Shiyin in his dream beholds the spirit-endowed jade.&rdquo;</p>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:16px;">此处英文系由<strong>德文</strong>转译，故保留德文末句的写法；若按中文原著直译，末句应作 &ldquo;hence the words &lsquo;Zhen Shiyin&rsquo; and no more.&rdquo;</p>
+  </section>
+
+  <!-- 04 NAMES -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04 / 专名</span>
+      <h2>专名对照表<span class="h2-en">Proper Names in Three Languages</span></h2>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead>
+          <tr><th>中文</th><th>拼音</th><th>德文原词</th><th>英文</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="zh-c">通靈</td>
+            <td class="py">tōnglíng</td>
+            <td class="de-c">der beseelte Stein / die Geister Verbindende</td>
+            <td class="en-c">the stone endowed with spirit</td>
+          </tr>
+          <tr>
+            <td class="zh-c">石頭記</td>
+            <td class="py">Shitouji</td>
+            <td class="de-c">die &raquo;Geschichte vom Stein«</td>
+            <td class="en-c">the <em>Story of the Stone</em></td>
+          </tr>
+          <tr>
+            <td class="zh-c">甄士隐</td>
+            <td class="py">Zhēn Shìyǐn</td>
+            <td class="de-c">Zhen Shiyin</td>
+            <td class="en-c">Zhen Shiyin</td>
+          </tr>
+          <tr>
+            <td class="zh-c">通灵宝玉</td>
+            <td class="py">tōnglíng bǎoyù</td>
+            <td class="de-c">das beseelte Juwel</td>
+            <td class="en-c">the spirit-endowed jade</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 05 NOTES -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05 / 译注</span>
+      <h2>译注<span class="h2-en">Translator&rsquo;s Notes</span></h2>
+    </div>
+    <ol class="notes">
+      <li>
+        <div class="note-zh"><strong>德文末句与原著有出入。</strong>原著作「故曰『甄士隐』云云」，德译者改写为 »Zhen Shiyin erkennt im Traum das beseelte Juwel«（甄士隐梦中识得通灵宝玉）—— 实际取的是第一回<strong>回目</strong>「甄士隐梦幻识通灵，贾雨村风尘怀闺秀」的说法。若做回译或版本比对，此处不宜当作文本直译。</div>
+        <div class="note-en">The final sentence departs from the source. The original reads only &ldquo;hence the words &lsquo;Zhen Shiyin&rsquo;.&rdquo; The German writer has substituted the wording of the Chapter&nbsp;1 couplet-title. For back-translation or textual comparison, this line should not be treated as a literal rendering.</div>
+      </li>
+      <li>
+        <div class="note-zh"><strong>「通灵」的德语释义。</strong>德文把通靈解为 „die Geister Verbindende&ldquo;（连接神灵者），是字面化的德语处理；中文语境中该词指「与神灵相通」，落到书中即那块灵石所具的灵性。英译取 &ldquo;endowed with spirit&rdquo; 以求兼顾字面与文意。</div>
+        <div class="note-en">&ldquo;通靈&rdquo; is glossed in German as <em>die Geister Verbindende</em> (&ldquo;she who binds the spirits&rdquo;) — a literalising move. In Chinese the term means &ldquo;in communion with the spirits,&rdquo; and in the novel it denotes the numinous quality of the stone itself.</div>
+      </li>
+      <li>
+        <div class="note-zh"><strong>「甄士隐」为谐音。</strong>谐「真事隐」（真事隐去），与「贾雨村」谐「假语村言」相对，是全书「真／假」结构的入口。翻译时通常保留音译，不作释义。</div>
+        <div class="note-en">&ldquo;甄士隐&rdquo; is a homophone of 真事隐, &ldquo;the true matter concealed,&rdquo; set against &ldquo;贾雨村&rdquo; = 假语村言, &ldquo;fictitious words in rustic speech.&rdquo; Together they open the novel&rsquo;s true/false architecture. Translators conventionally keep the name transliterated without glossing.</div>
+      </li>
+      <li>
+        <div class="note-zh"><strong>源文件格式。</strong><code>翻译项目.md</code> 实为 Word 文档（docx）误用 <code>.md</code> 扩展名；本次译文据其正文 <code>word/document.xml</code> 提取，全文为单一自然段，无脚注、批注或页眉页脚。</div>
+        <div class="note-en">The source file <code>翻译项目.md</code> is in fact a Word document (docx) saved with a <code>.md</code> extension. The text was extracted from <code>word/document.xml</code>; it is a single paragraph with no footnotes, comments, headers or footers.</div>
+      </li>
+    </ol>
+  </section>
+
+  <footer>
+    <div>《红楼梦》开卷「作者自云」· 中英双语对照<br>据德文源文整理 &middot; 原著文本参考通行本 / 甲戌本卷首</div>
+    <div class="en">A bilingual reading of the opening of <em>Honglou Meng</em> &middot; prepared 2026-10-10</div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var body = document.body;
+    var btns = {
+      'btn-both': '',
+      'btn-zh': 'only-zh',
+      'btn-en': 'only-en'
+    };
+    Object.keys(btns).forEach(function(id){
+      var el = document.getElementById(id);
+      if(!el) return;
+      el.addEventListener('click', function(){
+        body.classList.remove('only-zh','only-en');
+        if(btns[id]) body.classList.add(btns[id]);
+        Object.keys(btns).forEach(function(k){
+          document.getElementById(k).classList.toggle('active', k === id);
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
